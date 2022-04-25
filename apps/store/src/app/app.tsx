@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { getAllGames } from '../fake-api';
 import { Header } from '@nxegghead/store/ui-shared';
+import { formatRating } from '@nxegghead/store/util-formatters';
 
 export function App() {
   return (
@@ -29,7 +30,7 @@ export function App() {
                     {boardGame.description}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p" className="game-rating">
-                    <strong>Rating: </strong> {boardGame.rating}
+                    <strong>Rating: </strong> { formatRating(boardGame.rating) }
                   </Typography>
                 </CardContent>
               </CardActionArea>
