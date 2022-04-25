@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import './app.module.scss';
-import './app.module.scss'
+import styles from './app.module.scss';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';

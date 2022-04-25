@@ -8,14 +8,6 @@ const games = [
         rating: Math.random()
     },
     {
-        id: 'clue',
-        name: 'Clue',
-        image: '/assets/clue.jpg',
-        description: 'Who\'s the murderer?',
-        price: 34,
-        rating: Math.random()
-    },
-    {
         id: 'hues-and-cues',
         name: 'Hues and Cues',
         image: '/assets/hues_and_cues.jpeg',
