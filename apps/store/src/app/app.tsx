@@ -9,28 +9,50 @@ import { getAllGames } from '../fake-api';
 import { Header } from '@nxegghead/store/ui-shared';
 import { formatRating } from '@nxegghead/store/util-formatters';
 
+import { Route, useHistory, BrowserRouter } from 'react-router-dom';
+
+import { StoreFeatureGameDetail } from '@nxegghead/store/feature-game-detail';
+
 export function App() {
+  const history = useHistory();
+
   return (
     <>
-      <Header/>
-      <div className='container'>
-        <div className='games-layout'>
+      <Header />
+      <div className="container">
+        <div className="games-layout">
           {getAllGames().map((boardGame) => (
-            <Card key={boardGame.id} className="game-card">
+            <Card
+              key={boardGame.id}
+              className="game-card"
+              onClick={() => {
+                history.push(`/game/${boardGame.id}`);
+              }}
+            >
               <CardActionArea>
                 <CardMedia
-                  className='game-card-media'
+                  className="game-card-media"
                   image={boardGame.image}
-                  title={boardGame.name} />
-                <CardContent className=''>
+                  title={boardGame.name}
+                />
+                <CardContent className="">
                   <Typography gutterBottom variant="h5" component="h2">
                     {boardGame.name}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
                     {boardGame.description}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p" className="game-rating">
-                    <strong>Rating: </strong> { formatRating(boardGame.rating) }
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    className="game-rating"
+                  >
+                    <strong>Rating: </strong> {formatRating(boardGame.rating)}
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -38,6 +60,10 @@ export function App() {
           ))}
         </div>
       </div>
+
+      <BrowserRouter>
+        <Route path="/game/:id" component={StoreFeatureGameDetail} />
+      </BrowserRouter>
     </>
   );
 }
