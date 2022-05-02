@@ -92,3 +92,71 @@ Nx Cloud pairs with Nx in order to enable you to build and test code more rapidl
 Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
+
+---
+
+# Useful NX commands
+
+## Creation
+
+```shell
+yarn nx generate @nrwl/react:application my-app 
+yarn nx g @nrwl/react:app my-app
+```
+
+## Libraries
+
+```
+yarn nx g @nrwl/react:lib my-lib-name
+yarn nx g @nrwl/react:lib my-lib-name --directory=my_dir  --appProject=my-project
+```
+
+## Dependencies
+
+```
+yarn nx dep-graph
+```
+
+## Express Backend API
+
+Adding the required dependency
+```
+yarn add --dev @nrwl/express
+```
+
+Creating a new express application
+```
+yarn nx generate @nrwl/express:app my-app
+```
+
+To create an application with a proxy to an existing fronend project
+```
+yarn nx generate @nrwl/express:app my-app --frontendProject=store
+```
+
+To run our application
+```shell
+yarn nx serve my-app
+```
+
+## Run many projects
+
+To tun many **NX** commands at the same time we can use:
+```shell
+yarn nx run-many --target=serve --projects=project1,project2 --parallel=true
+```
+
+In addition to the last example you can configure certain tasks in each project configuration file `project.json` like this:
+
+```json
+"serveWithAPI": {
+  "executor": "@nrwl/workspace:run-commands",
+  "options": {
+    "commands": [
+      { "command": "nx serve api" },
+      { "command": "nx serve store" }
+    ]
+  }
+},
+```
+
